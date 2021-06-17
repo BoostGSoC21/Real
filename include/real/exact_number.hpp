@@ -352,16 +352,35 @@ namespace boost {
                 exact_ar.normalize();
                 exact_br.normalize();
 
-                exact_number<T> sum_al_ar (exact_al);
-                exact_number<T> sum_bl_br (exact_bl);
+                exact_number<T> sum_al_ar;
+                exact_number<T> sum_bl_br;
 
                 /*
                     Variable explanation
-                    sum_al_ar = al + ar
-                    sum_bl_br = bl + br
+                    sum_al_ar = al - ar
+                    sum_bl_br = br - bl
                 */
-                sum_al_ar.add_vector(exact_ar, base - 1);
-                sum_bl_br.add_vector(exact_br, base - 1);
+                int sign = 1;
+
+                if(exact_al > exact_ar) {
+                    sum_al_ar = exact_al;
+                    sum_al_ar.subtract_vector(exact_ar, base - 1);
+                }
+                else {
+                    sum_al_ar = exact_ar;
+                    sum_al_ar.subtract_vector(exact_al, base - 1);
+                    sign *= -1;
+                }
+
+                if(exact_br > exact_bl) {
+                    sum_bl_br = exact_br;
+                    sum_bl_br.subtract_vector(exact_bl, base - 1);
+                }
+                else {
+                    sum_bl_br = exact_bl;
+                    sum_bl_br.subtract_vector(exact_br, base - 1);
+                    sign *= -1;
+                }
 
                 exact_al.karatsuba_multiplication(exact_bl, base);
                 sum_al_ar.karatsuba_multiplication(sum_bl_br, base);
@@ -369,13 +388,22 @@ namespace boost {
                 /*
                     Variable explanation
                     exact_al = al * bl
-                    sum_al_ar = (al + ar) * (bl + br)
+                    sum_al_ar = (al - ar) * (br - bl)
                     exact_ar = ar * br
                 */
 
-                sum_al_ar.subtract_vector(exact_al, base - 1);
-                sum_al_ar.subtract_vector(exact_ar, base - 1);
+                exact_number<T> temp(exact_al);
+                temp.add_vector(exact_ar, base - 1);
+
+                if(sign == 1) {
+                    sum_al_ar.add_vector(temp, base - 1);
+                }
+                else {
+                    temp.subtract_vector(sum_al_ar, base - 1);
+                    sum_al_ar = temp;
+                }
                 /*
+                    temp = al * bl + ar * br
                     sum_al_ar = al * br + ar * bl
                 */
 
