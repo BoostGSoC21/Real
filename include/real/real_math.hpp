@@ -201,8 +201,17 @@ namespace boost{
                 return literals::zero_exact<T>;
             }
             
-            // initial guess
-            exact_number<T> result(x.digits, (x.exponent + 1)/2, true);
+            // initial guess using scalar estimate
+            exact_number<T> result;
+            if(x.exponent%2==0)
+            {
+                if(x.digits[0]>=1)
+                    result=exact_number<T> (std::vector<T> {6}, (x.exponent)/2, true);
+                else
+                    result=exact_number<T> (std::vector<T> {2}, (x.exponent)/2, true);
+            }
+            else
+                result=exact_number<T>(std::vector<T> {2}, (x.exponent-1)/2, true);
 
             exact_number<T> error;
             exact_number<T> max_error(std::vector<T> {1}, -max_error_exponent, true);
