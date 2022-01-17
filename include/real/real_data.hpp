@@ -422,8 +422,9 @@ namespace boost {
                      * will change once, so we will different signs of derivative on upper and lower bound. If there are both minima and maxima,
                      * sign of derivative will change twice, so at the end, sign of derivative in both upper and lower bound will remain same.
                      **/
-                    auto [sin_lower, cos_lower] = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                    auto [sin_upper, cos_upper] = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                    exact_number<T> sin_lower,sin_upper,cos_lower,cos_upper;
+                    std::tie(sin_lower, cos_lower) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                    std::tie(sin_upper, cos_upper) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                     if(ro.get_lhs_itr().get_interval().upper_bound - ro.get_lhs_itr().get_interval().lower_bound >= literals::four_exact<T>){
                         /**
                          * If sign of derivative, which cos(x), if it is same for both upper and lower bound. Then we will return 
@@ -537,8 +538,9 @@ namespace boost {
                      * will change once, so we will different signs of derivative on upper and lower bound. If there are both minima and maxima,
                      * sign of derivative will change twice, so at the end, sign of derivative in both upper and lower bound will remain same.
                      **/
-                    auto [sin_lower, cos_lower] = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                    auto [sin_upper, cos_upper] = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                    exact_number<T> sin_lower,sin_upper,cos_lower,cos_upper;
+                    std::tie(sin_lower, cos_lower) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                    std::tie(sin_upper, cos_upper) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                     if(ro.get_lhs_itr().get_interval().upper_bound - ro.get_lhs_itr().get_interval().lower_bound >= literals::four_exact<T>){
                         /**
                          * If sign of derivative, which -sin(x), if it is same for both upper and lower bound. Then we will return 
@@ -641,8 +643,8 @@ namespace boost {
                             iterate_again = true;
                         }
                         else{
-                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                             /**
                              * Now if difference between lower and upper bounds of interval is less than 4, then there can exist 0,1 or 2 minima/maxima points.
                              * First we will check whether the sign of cos(x) from lower to upper bound is changed or not, if it is, then we have one point 
@@ -700,8 +702,8 @@ namespace boost {
                             iterate_again = true;
                         }
                         else{
-                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                             /**
                              * Now if difference between lower and upper bounds of interval is less than 4, then there can exist 0,1 or 2 minima/maxima points.
                              * First we will check whether the sign of sin(x) from lower to upper bound is changed or not, if it is, then we have one point 
@@ -761,8 +763,8 @@ namespace boost {
                             iterate_again = true;
                         }
                         else{
-                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                             /**
                              * Now if difference between lower and upper bounds of interval is less than 4, then there can exist 0,1 or 2 minima/maxima points.
                              * First we will check whether the sign of cos(x) from lower to upper bound is changed or not, if it is, then we have one point 
@@ -862,8 +864,8 @@ namespace boost {
                             iterate_again = true;
                         }
                         else{
-                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
-                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                            std::tie(sin_lower_tmp, cos_lower_tmp) = sin_cos(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
+                            std::tie(sin_upper_tmp, cos_upper_tmp) = sin_cos(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                             /**
                              * Now if difference between lower and upper bounds of interval is less than 4, then there can exist 0,1 or 2 minima/maxima points.
                              * First we will check whether the sign of sin(x) from lower to upper bound is changed or not, if it is, then we have one point 
@@ -975,9 +977,9 @@ namespace boost {
 
                     // asin is an increasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        sin_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
+                        sin_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        sin_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                        sin_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                     break;
                 }
 
@@ -1003,27 +1005,27 @@ namespace boost {
 
                     // acos is a decreasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        cos_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, false);
+                        cos_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        cos_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, true);
+                        cos_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, true);
                     break;
                 }
 
                 case OPERATION::ATAN :{
                     // atan is an increasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        tan_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
+                        tan_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        tan_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                        tan_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                     break;
                 }
 
                 case OPERATION::ACOT :{
                     // acot is a decreasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        cot_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, false);
+                        cot_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        cot_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, true);
+                        cot_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, true);
                     break;
                 }
 
@@ -1049,9 +1051,9 @@ namespace boost {
 
                     // asec is an increasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        sec_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, false);
+                        sec_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        sec_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, true);
+                        sec_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, true);
                     break;
                 }
 
@@ -1077,9 +1079,9 @@ namespace boost {
 
                     // acosec is a decreasing function in its domain
                     this->_approximation_interval.lower_bound = 
-                        cosec_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision, false);
+                        cosec_inverse(ro.get_lhs_itr().get_interval().upper_bound.up_to(_precision, true), _precision+4, false);
                     this->_approximation_interval.upper_bound = 
-                        cosec_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision, true);
+                        cosec_inverse(ro.get_lhs_itr().get_interval().lower_bound.up_to(_precision, false), _precision+4, true);
                     break;
                 }
 
@@ -1133,7 +1135,7 @@ namespace boost {
                             numerator = ro.get_lhs_itr().get_interval().upper_bound;
                             denominator = ro.get_rhs_itr().get_interval().upper_bound;
                         }
-                        this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision, deviation_upper_boundary);
+                        this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_upper_boundary);
 
                         // Lower Boundary
                         if (ro.get_lhs_itr().get_interval().positive()) {
@@ -1145,7 +1147,7 @@ namespace boost {
                             numerator = ro.get_lhs_itr().get_interval().lower_bound;
                             denominator = ro.get_rhs_itr().get_interval().lower_bound;
                         } 
-                        this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision, deviation_lower_boundary);
+                        this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_lower_boundary);
                     }
                     else {
                         // x < 0, atan2 is dicontinuous along negative x-axis
@@ -1174,19 +1176,19 @@ namespace boost {
                             deviation_upper_boundary = false;
                             numerator = ro.get_lhs_itr().get_interval().lower_bound;
                             denominator = ro.get_rhs_itr().get_interval().lower_bound;
-                            this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision, deviation_upper_boundary);
+                            this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_upper_boundary);
 
                             // Lower Boundary
                             if (ro.get_rhs_itr().get_interval().negative()) {
                                 deviation_lower_boundary = true;
                                 numerator = ro.get_lhs_itr().get_interval().upper_bound;
                                 denominator = ro.get_rhs_itr().get_interval().upper_bound;
-                                this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision, deviation_lower_boundary);
+                                this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_lower_boundary);
                             } else {
                                 deviation_lower_boundary = true;
                                 numerator = ro.get_lhs_itr().get_interval().lower_bound;
                                 denominator = ro.get_rhs_itr().get_interval().upper_bound;
-                                this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision, deviation_lower_boundary);
+                                this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_lower_boundary);
                             }
                         } 
                         else {
@@ -1197,19 +1199,19 @@ namespace boost {
                                 deviation_upper_boundary = true;
                                 numerator = ro.get_lhs_itr().get_interval().lower_bound;
                                 denominator = ro.get_rhs_itr().get_interval().upper_bound;
-                                this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision, deviation_upper_boundary);
+                                this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_upper_boundary);
                             } else {
                                 deviation_upper_boundary = true;
                                 numerator = ro.get_lhs_itr().get_interval().upper_bound;
                                 denominator = ro.get_rhs_itr().get_interval().upper_bound;
-                                this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision, deviation_upper_boundary);
+                                this->_approximation_interval.upper_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_upper_boundary);
                             }
 
                             // Lower Boundary
                             deviation_lower_boundary = false;
                             numerator = ro.get_lhs_itr().get_interval().upper_bound;
                             denominator = ro.get_rhs_itr().get_interval().lower_bound;
-                            this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision, deviation_lower_boundary);
+                            this->_approximation_interval.lower_bound = tan2_inverse(numerator, denominator, _precision+4, deviation_lower_boundary);
                         }
                     }
 
