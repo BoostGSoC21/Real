@@ -1621,15 +1621,15 @@ namespace boost {
 
                 if (positive == other.positive) {
                         result = *this;
-                        result.add_vector(other, 9);
+                        result.add_vector(other, 10);
                         result.positive = this->positive;
                 } else if (other.abs() < (*this).abs()) {
                         result = *this;
-                        result.subtract_vector(other, 9);
+                        result.subtract_vector(other, 10);
                         result.positive = this->positive;
                 } else {
                     result = other;
-                    result.subtract_vector((*this), 9);
+                    result.subtract_vector((*this), 10);
                     result.positive = !this->positive;
                 }
                 return result;
@@ -1667,16 +1667,16 @@ namespace boost {
 
                 if (this->positive != other.positive) {
                     result = *this;
-                    result.add_vector(other, 9);
+                    result.add_vector(other, 10);
                     result.positive = this->positive;
                 } else {
                     if (other.abs() < (*this).abs()) {
                         result = *this;
-                        result.subtract_vector(other, 9);
+                        result.subtract_vector(other, 10);
                         result.positive = this->positive;
                     } else {
                         result = other;
-                        result.subtract_vector(*this, 9);
+                        result.subtract_vector(*this, 10);
                         result.positive = !this->positive;
                     }
                 }
